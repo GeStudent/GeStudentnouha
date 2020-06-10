@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+
+{%  block body %}
+
+ <div class="services news">
+  <div class="container">
+   <h3 class="w3ls-title">Clubs</h3>
+
+   <div class="news-agileinfo">
+    {% for c in clubs %}
+
+ <div class="col-sm-4 news-w3lgrids">
+  <div class="news-gridtext">
+   <div class="news-w3img">
+
+
+    <a href="single.html">
+     <img   src="{{ asset('/../../images/uploads/') }}{{ c.image }}" class="img-responsive zoom-img" alt=""
+      style="width: 400px; height:400px; padding:0px; text-align: center"
+      />
+    </a>
+   </div>
+   <div class="news-w3imgtext">
+    <h5 class="w3-agilep">{{ c.date|date("F d, Y") }}</h5>
+    <h4><a href="single.html">{{ c.nom}}</a></h4>
+    <p>{{ c.description }}</p>
+    <a class="w3-agilebtn" href="{{ path('JoinClub', {'idClub': c.id })}}" ><span>Join</span></a>
+    <button id="b">  afficherr</button>
+   </div>
+  </div>
+ </div>
+    {% endfor %}
+
+    <div class="clearfix"> </div>
+   </div>
+  </div>
+ </div>
+
+{% endblock %}
+{% block javascripts %}
+
+
+ <script>
+
+</script>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+                                <h1><b> {{ students.firstname }}  {{ students.lastname }}</b></h1>
+
+    {% for ClassE in ClassE %}
+
+      <h1>{{ClassE.nameC}}</h1>
+
+
+
+                                {% endfor %}
+
+
+
+
+    <table class="table table-striped"  id="resultat">
+        <thead >
+        <tr>
+
+            <th scope="col">name</th>
+            <th scope="col">duration</th>
+            <th scope="col">lesson</th>
+            <th scope="col">cours</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for c in cours %}
+            <tr >
+
+
+                <td >{{c.name}}</td>
+                <td  >{{c.duration}}</td>
+                <td >{{c.lesson}}</td>
+
+                <td> <a href="{{  asset('uploads/brochures/' ~ c.brochureFilename) }}">View cours (PDF)</a></td>
+
+
+
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+    {% endblock %}
+
+
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+{% extends 'back.html.twig' %}
+
+
+{%  block body %}
+
+
+
+
+
+    <div class="col-md-3 text-right">
+        <div class="input-group ">
+
+            <div class="input-group-btn">
+
+                    <i class="glyphicon glyphicon-search"></i>
+
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered"  id="resultat">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">name</th>
+        <th scope="col">duration</th>
+        <th scope="col">lesson</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for cours in cours %}
+<tr>
+
+    <td>{{cours.id}}</td>
+    <td>{{cours.name}}</td>
+    <td>{{cours.duration}}</td>
+    <td>{{cours.lesson}}</td>
+
+    <td>
+        <a href="{{ path("ModifierCours",{'Id':cours.Id})}}"
+
+           data-toggle="tooltip" title="update class ">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        </a>
+        <a href="{{ path("SupprimerCours",{'Id':cours.Id}) }}"
+           data-toggle="tooltip" title="Delete Class">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </a>
+
+
+    </td>
+
+
+
+</tr>
+    {% endfor %}
+
+    </tbody>
+    </table>
+
+
+{% endblock %}

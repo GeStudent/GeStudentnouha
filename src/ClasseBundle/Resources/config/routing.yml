@@ -1,0 +1,110 @@
+classe_homepage:
+    path:     /class
+    defaults: { _controller: ClasseBundle:Default:index }
+AjoutClass:
+    path:     /AjoutClass
+    defaults: { _controller: ClasseBundle:Classe:AjoutClass }
+Frontuser:
+    path:     /Frontuser/
+    defaults: { _controller: ClasseBundle:Classe:Frontuser }
+Frontusercour:
+        path:     /Frontusercour/
+        defaults: { _controller: ClasseBundle:Classe:Frontusercour }
+Listlass:
+    path:     /Listlass
+    defaults: { _controller: ClasseBundle:Classe:ListClass }
+
+SupprimerClasse:
+    path:     /SupprimerClasse/{id}
+    defaults: { _controller: ClasseBundle:classe:deleteClasse}
+ModifierClasse:
+    path:     /ModifierClasse/{id}
+    defaults: { _controller: ClasseBundle:classe:UpdateClasse}
+pdf:
+    path:     /pdf/{id}
+    defaults: { _controller: ClasseBundle:Classe:pdf}
+AffectCour:
+    path:     /AffectCour/{idclass}/{name}
+    defaults: { _controller: ClasseBundle:classe:AffectCour}
+AffectClass:
+    path:     /AffectClass/{idStudent}/{nameC}
+    defaults: { _controller: ClasseBundle:classe:AffectClass}
+Listcourclasse:
+    path:     /Listcourclasse/{id}
+    defaults: { _controller: ClasseBundle:classe:Listcourclasse}
+ListCC:
+    path:     /ListCC
+    defaults: { _controller: ClasseBundle:classe:ListCC}
+ListStudent:
+    path:     /ListStudent/{id}
+    defaults: { _controller: ClasseBundle:classe:ListStudent}
+SendMailCours:
+    path:     /SendMailCours/{idClass}/{idCour}
+    defaults: { _controller: ClasseBundle:classe:SendMailCours }
+
+Listsupprimer:
+    path:     /Listsupprimer/{idStudent}/{id}
+    defaults: { _controller: ClasseBundle:classe:supprimerstudent}
+ListCourMobile:
+    path:     /ListCourMobile/
+    defaults: { _controller: ClasseBundle:cours:ListCourMobile }
+ListstudentMobile:
+    path:     /ListstudentMobile/
+    defaults: { _controller: ClasseBundle:classe:ListstudentMobile }
+
+
+AffectClassMobile:
+    path:     /AffectClassMobile/{idStudent}/{nameC}
+    defaults: { _controller: ClasseBundle:classe:AffectClassMobile }
+deleteCourMobile:
+    path:     /deleteCourMobile/
+    defaults: { _controller: ClasseBundle:cours:deleteCourMobile }
+EditCourMobile:
+    path:     /EditCourMobile/
+    defaults: { _controller: ClasseBundle:cours:EditCourMobile}
+search:
+    path:     /search/
+    defaults: { _controller: ClasseBundle:cours:search}
+
+AjoutCours:
+    path:     /AjoutCours
+    defaults: { _controller: ClasseBundle:cours:AjoutCours}
+Listcour:
+    path:     /Listcour
+    defaults: { _controller: ClasseBundle:cours:ListCours }
+SupprimerCours:
+     path:     /SupprimerCours/{Id}
+     defaults: { _controller: ClasseBundle:cours:deleteCours}
+
+ModifierCours:
+    path:     /ModifierCours/{Id}
+    defaults: { _controller: ClasseBundle:cours:UpdateCour }
+AddCoursMobile:
+    path:     /AddCoursMobile/
+    defaults: { _controller: ClasseBundle:cours:AddCourMobile }
+Listrecherche:
+    path:     /Listrecherche/{id}
+    defaults: { _controller: ClasseBundle:cours:Listrecherche }
+
+
+
+
+
+
+ListClassMobile:
+    path:     /ListClassMobile/
+    defaults: { _controller: ClasseBundle:classe:ListClassMobile }
+AddClassMobile:
+    path:     /AddClassMobile/
+    defaults: { _controller: ClasseBundle:classe:AddClassMobile }
+DeleteClassMobile:
+    path:     /DeleteClassMobile/
+    defaults: { _controller: ClasseBundle:classe:DeleteClassMobile }
+EditClassMobile:
+    path:     /EditClassMobile/
+    defaults: { _controller: ClasseBundle:classe:EditClassMobile}
+
+
+ClassestudentMobile:
+    path:     /ClassestudentMobile/{idclass}
+    defaults: { _controller: ClasseBundle:classe:ClassestudentMobile }

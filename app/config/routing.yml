@@ -1,0 +1,50 @@
+classe:
+    resource: "@ClasseBundle/Resources/config/routing.yml"
+    prefix:   /
+
+club:
+    resource: "@ClubBundle/Resources/config/routing.yml"
+    prefix:   /
+
+back:
+    resource: "@BackBundle/Resources/config/routing.yml"
+    prefix:   /Back
+
+front:
+    resource: "@FrontBundle/Resources/config/routing.yml"
+    prefix:   /Front
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+aceeuilfront:
+    path:     /front
+    defaults: { _controller: FrontBundle:Default:acceuil }
+about:
+    path:     /about
+    defaults: { _controller: FrontBundle:Default:about }
+Forntclub:
+    path:     /club
+    defaults: { _controller: FrontBundle:Default:club }
+aceeuilback:
+    path:     /back
+    defaults: { _controller: BackBundle:Default:acceuil }
+BackClub:
+    path:     /backClub
+    defaults: { _controller: BackBundle:Default:Club }
+ListStudents:
+    path:     /ListStudents
+    defaults: { _controller: AppBundle:Default:ListStudents }
+ListTeachers:
+    path:     /ListTeachers
+    defaults: { _controller: AppBundle:Default:ListTeachers }
+loginMobile:
+    path:     /loginMobile/{username}/{password}
+    defaults: { _controller: AppBundle:Default:loginMobile }
+
+# app/config/routing.yml
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /admin

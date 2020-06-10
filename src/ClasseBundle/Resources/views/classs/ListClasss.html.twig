@@ -1,0 +1,156 @@
+{% extends 'back.html.twig' %}
+{%  block body %}
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Class Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for Class in classs %}
+            <tr>
+                <td>{{Class.id}}</td>
+
+                <td>{{Class.nameC}}</td>
+
+
+
+                <td>
+                    <a href="{{ path("ModifierClasse",{'id':Class.id})}}"
+                       data-toggle="tooltip" title="update class ">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path("SupprimerClasse",{'id':Class.id}) }}"
+                       data-toggle="tooltip" title="Delete Class">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
+                    <div class="btn-group btn-group-sm btn-group-horizontal">
+                        <a class="btn btn-info" href="{{ path('ListStudent', { 'id':Class.id}) }}" data-toggle="tooltip" title="List Members">
+                            <span class="fa fa-eye" aria-hidden="true" ></span>
+                        </a>
+
+                    </div>
+                    <div class="btn-group btn-group-sm btn-group-horizontal">
+                        <a class="btn btn-info" href="{{ path('Listcourclasse', { 'id':Class.id}) }}" data-toggle="tooltip" title="Listcc cours">
+                            <span class="fa fa-eye" aria-hidden="true" ></span>
+                        </a>
+
+                    </div>
+
+
+
+
+                </td>
+                <td>
+                    <a id="{{ Class.id }}"  href="#" class="js_affcter" data-toggle="tooltip" title="Affecter Cour">
+                                            <span style="font-size: 25px;">
+                                    <i class="fa fa-user-plus"></i>
+                                            </span>
+                    </a>
+                </td>
+
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}
+{% block javascripte %}
+
+
+    <link rel="stylesheet"
+          href="{{ asset('jquery/demo/demo.css')}}">
+    <script>
+        var version = '3.3.4';
+    </script>
+    <link rel="stylesheet"
+          type="text/css"
+          href="{{ asset('jquery/css/jquery-confirm.css')}}"/>
+    <script type="text/javascript"
+            src="{{ asset('jquery/js/jquery-confirm.js')}}"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $(document).on("click", ".js_affcter",function (e) {
+
+
+                var DataList=[];
+                {% for c in cours %}
+                DataList.push({{ c.name|json_encode()|raw }})
+                {% endfor %}
+                {% set i =-1 %}
+                var id2= $(this).attr('id');
+                var url = "{{ path('AffectCour',{ 'idclass': 'class' ,'name':'cours' }) }}";
+                url = url.replace("class", id2);
+
+                e.preventDefault();
+
+                $.confirm({
+                    columnClass: 'medium',
+                    title: 'Cours!',
+                    content: '' +
+                        '<select id="box1" class="custom-select col-md-12" multiple>' +
+                        '{% for c in cours %}'+
+                        '{% set i=i+1 %}'+
+                        '<option value="1"> '+DataList[{{i}}]+' </option>' +
+                        '{% endfor %}'+
+                        '</select>',
+                    buttons: {
+                        formSubmit: {
+                            text: 'Submit',
+                            btnClass: 'btn-blue',
+                            action: function() {
+                                console.log('studentid:'+id2);
+                                var sel = document.getElementById("box1");
+                                var cours = sel.options[sel.selectedIndex].text;
+
+                                url = url.replace("cours", cours);
+                                window.location = url;
+
+                            }
+                        },
+                        cancel: function() {
+                            //close
+                        },
+                    }
+
+                });
+
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+            $('#myInput').keyup(function() {
+                search_table($(this).val());
+            });
+
+            function search_table(value) {
+                $('#myTable tr').each(function() {
+                    var found = 'false';
+                    $(this).each(function() {
+                        if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                            found = 'true';
+                        }
+                    });
+                    if (found == 'true') {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock %}

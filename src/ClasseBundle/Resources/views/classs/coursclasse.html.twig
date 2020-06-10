@@ -1,0 +1,80 @@
+{% extends 'back.html.twig' %}
+{% block body %}
+
+    <div class="page-content-wrapper ">
+            <br>
+            <br>
+            <div style="float: right"><br>
+                <a href="{{ path('Listlass') }}" class="btn btn-secondary">
+                    <i class="fa fa-undo" aria-hidden="true"></i>  Go Back</a>
+                <br>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h1><b>cours of {{ Class.nameC }} </b></h1>
+                            </div>
+                            <div class="col-md-3 text-right">
+                                <div class="input-group ">
+                                    <input id="myInput" type="text" class="form-control" placeholder="Search">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">
+                                            <i class="glyphicon glyphicon-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-bordered"  id="resultat">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">name</th>
+                                    <th scope="col">duration</th>
+                                    <th scope="col">lesson</th>
+                                    <th scope="col">cours</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for c in cours %}
+                                <tr>
+
+                                    <td>{{c.Id}}</td>
+                                    <td>{{c.name}}</td>
+                                    <td>{{c.duration}}</td>
+                                    <td>{{c.lesson}}</td>
+                                    <td><a href="{{  asset('uploads/brochures/' ~ c.brochureFilename) }}">View cours (PDF)</a></td>
+
+                                    <td>
+
+                                        <a href="{{ path("SupprimerCours",{'Id':c.Id}) }}"
+
+                                           data-toggle="tooltip" title="Delete Class">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                        </a>
+                                        <div class="btn-group btn-group-sm btn-group-horizontal">
+                                            <a class="btn btn-danger"
+                                               href="{{ path('SendMailCours',{ 'idClass': Class.id ,'idCour': c.Id}) }} "
+                                               data-toggle="tooltip" title="Send Mail">
+                                                <i class="fa fa-envelope"></i>                                                    </a>
+                                        </div>
+
+
+
+
+
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+ {% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+
+{%  block body %}
+
+    <div class="contact">
+        <div class="container">
+            <h3 class="w3ls-title">Request for Club Creation</h3>
+            <div class="contact-w3lsrow">
+                <div class="col-md-6 contact-left w3-agileits"  >
+                    <iframe src="{{ asset('Front/images/Associativelife.jpg')}}" allowfullscreen></iframe>
+
+                </div>
+                <div class="col-md-6 contact-right">
+                    {{form_start(form)  }}
+                        <div class="styled-input agile-styled-input-top">
+                            {{ form_widget(form.nom)  }}
+                            <label>Name</label>
+                        </div>
+                        <div class="styled-input">
+                            {{ form_widget(form.email)  }}
+                            <label>Email</label>
+                            <span></span>
+                        </div>
+                        <div class="styled-input">
+                            {{ form_widget(form.image)  }}
+                            <span></span>
+                        </div>
+                    <div class="styled-input">
+                        {{ form_widget(form.tel)  }}
+                        <label>Phone Number</label>
+                        <span></span>
+                    </div>
+                        <div class="styled-input">
+                            {{ form_widget(form.description)  }}
+                            <label>Message</label>
+                            <span></span>
+                        </div>
+                        <input type="submit" value="SEND" class="js-Send" href="">
+                    {{ form_end(form) }}
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+

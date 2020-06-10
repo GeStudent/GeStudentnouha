@@ -1,0 +1,21 @@
+club_homepage:
+    path:     /
+    defaults: { _controller: ClubBundle:Default:index }
+AjoutClub:
+    path:     /AjoutClub/
+    defaults: { _controller: ClubBundle:Club:AjoutClub }
+AfficheClub:
+    path:     /AfficheClub/
+    defaults: { _controller: ClubBundle:Club:AfficheClub }
+ListClub:
+    path:     /ListClub/
+    defaults: { _controller: ClubBundle:Club:ListClub }
+RefuseClub:
+    path:     /RefuseClub/{id}
+    defaults: { _controller: ClubBundle:Club:RefuseClub }
+AccpetClub:
+    path:     /AccpetClub/{id}
+    defaults: { _controller: ClubBundle:Club:AccpetClub }
+JoinClub:
+    path:     /JoinClub/{idClub}
+    defaults: { _controller: ClubBundle:Club:JoinClub }

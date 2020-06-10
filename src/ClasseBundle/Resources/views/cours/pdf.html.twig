@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+
+
+<body>
+<center>
+    <h1 style="color: red " > Les participants </h1>
+
+</center>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+<div class="card-body">
+    {% for l in Evenement %}
+
+        <div><h2 style="color:red" class="card-title"></h2><h2>Mr {{l.idChauffeur.nom  }} {{ l.idChauffeur.prenom}} /role :{{l.idChauffeur.role  }} / num :{{l.idChauffeur.tel  }}</h2></div>
+
+    {% endfor %}
+
+
+    <br>
+    <br>
+    <h3>Contact</h3>
+    <h4>
+        +216 56128435 </h4>
+    <h4>E-Mail</h4>
+    <h4>
+        Driver@esprit.tn -
+    </h4>
+    </h2>
+    <center><h4>A propos de nous</h4>
+        <h4>  <p>DriverApp est une application Web et Mobile permet d’améliorer les services de transport en tunisie</p></h4></center>
+</div>
+</div>
+
+</body>
+
+</html>

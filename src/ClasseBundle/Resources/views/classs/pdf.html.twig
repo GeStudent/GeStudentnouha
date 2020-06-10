@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+
+
+
+<body>
+<center>
+    <h1 style="color: red " >  {{class.nameC}} Students </h1>
+
+</center>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+<div class="card-body">
+
+    {% for m in students %}
+
+        <div><td><h2 style="color:red" class="card-title"></h2> <h2> {{m.firstname|capitalize }} {{ m.lastname|capitalize }} </h2></td></div>
+
+
+
+    {% endfor %}
+
+
+    <br>
+    <br>
+
+    <h4>
+        </h4>
+    <h3>signature</h3>
+    <h4>
+
+    </h4>
+    </h2>
+    <center><h4></h4>
+        <h4>  <p> </p></h4></center>
+</div>
+</div>
+
+</body>
+
+</html>
+
+

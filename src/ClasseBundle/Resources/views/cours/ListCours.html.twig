@@ -1,0 +1,147 @@
+{% extends 'back.html.twig' %}
+{%  block body %}
+    <style type="text/css">
+        .highlighted{
+            background-color: #2BA6CB; color: #FFF
+        }
+        </style>
+
+
+    <div class="col-md-3 text-right">
+        <div class="input-group ">
+            <input id="search" type="text" class="form-control" placeholder="Search">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered"  id="resultat">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">name</th>
+            <th scope="col">duration</th>
+            <th scope="col">lesson</th>
+            <th scope="col">cours</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cours in cours %}
+            <tr>
+
+                <td>{{cours.Id}}</td>
+               <td>{{cours.name}}</td>
+                <td>{{cours.duration}}</td>
+                <td>{{cours.lesson}}</td>
+
+                <td><a href="{{  asset('uploads/brochures/' ~ cours.brochureFilename) }}">View cours (PDF)</a></td>
+
+                <td>
+                    <a href="{{ path("ModifierCours",{'Id':cours.Id})}}"
+
+                       data-toggle="tooltip" title="update class ">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path("SupprimerCours",{'Id':cours.Id}) }}"
+
+                       data-toggle="tooltip" title="Delete Class">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </a>
+
+
+
+                </td>
+
+            </tr>
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+    <div >
+        <a href="{{ path('AjoutCours') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">ADD Cours</a>
+
+    </div>
+
+{% endblock %}
+{% block javascripte %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+
+        var searchRequest = null;
+        $("#search").keyup(function() {
+            var minlength = 1;
+            var that = this;
+            var value = $(this).val();
+            var entitySelector = $("#resultat").html('');
+            if (value.length >= minlength ) {
+
+                if (searchRequest != null)
+
+                    searchRequest.abort();
+
+                searchRequest = $.ajax({
+                    type: "GET",
+
+                    url: "{{ path('search') }}",
+                    data: {
+                        'q' : value
+
+                    },
+
+                    dataType: "text",
+                    success: function(msg){
+                        //we need to check if the value is the same
+                        if (value==$(that).val()) {
+
+                            var result = JSON.parse(msg);
+
+                            $.each(result, function(key, arr) {
+                                $.each(arr, function(id, value) {
+                                    if (key == 'entities') {
+                                        if (id != 'error') {
+                                            entitySelector.append('<ul class="list-group "><h2><li id="div2" class="list-group-item list-group-item-info"> <a href="/GeStudent/web/app_dev.php/Listrecherche/'+id+'">'+value+'</a></li></h2></ul>');
+
+                                          //  $(function() {
+                                            //   if($(entitySelector).on("click", ".LiRoom", function()  {
+                                              //     var obj=document.getElementById("div2").innerHTML;
+
+                                               
+
+
+
+
+
+
+
+
+                                                //}));
+                                            //});
+
+
+
+                                        } else {
+                                            entitySelector.append('<ul class="list-group "><li class="list-group-item list-group-item-danger">'+value+'</li>');
+
+
+                                        }
+
+                                    }
+                                });
+
+                            });
+                        }
+                    }
+
+                });
+
+            }
+        });
+    });
+
+</script>
+{% endblock %}

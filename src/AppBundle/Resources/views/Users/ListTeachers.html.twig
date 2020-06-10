@@ -1,0 +1,91 @@
+{% extends 'back.html.twig' %}
+{% block body %}
+    <div class="page-content-wrapper ">
+        <div class="container sm-gutter">
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h1><b>Teachers </b></h1>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            <div class="input-group ">
+                                <input id="myInput" type="text" class="form-control" placeholder="Search">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <table class="table table-bordered " id="myTable">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">IMAGE</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Gender</th>
+                                <th scope="col">Birth Day</th>
+                                <th scope="col">Post</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for teacher in teachers %}
+                                {% if teacher.getRole() in ['ROLE_TEACHER'] %}
+                                    <tr>
+                                        <td>{{teacher.id}}</td>
+                                        <td style="width: 60px; padding:0px; text-align: center">
+                                            {% if teacher.image != '' %}
+                                                <img alt="Livre Pic" style="width:150px;" src="{{ asset('/../../images/uploads/') }}{{ teacher.image }}" /> {% endif %}
+                                        </td>
+                                        <td>{{teacher.firstname|capitalize }} {{ teacher.lastname|capitalize }}</td>
+                                        <td>{{teacher.email}}</td>
+                                        <td>{{teacher.gender}}</td>
+                                        <td>{{teacher.birthDay |date("m/d/Y") }}</td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripte %}
+    <script>
+        $(document).ready(function() {
+            $('#myInput').keyup(function() {
+                search_table($(this).val());
+            });
+
+            function search_table(value) {
+                $('#myTable tr').each(function() {
+                    var found = 'false';
+                    $(this).each(function() {
+                        if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                            found = 'true';
+                        }
+                    });
+                    if (found == 'true') {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock %}
